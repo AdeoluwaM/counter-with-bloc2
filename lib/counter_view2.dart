@@ -13,6 +13,7 @@ class CounterView2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: 'incrementbtn',
             onPressed: () {
               context.read<CounterCubit>().increment();
             },
@@ -20,6 +21,7 @@ class CounterView2 extends StatelessWidget {
           ),
           SizedBox(height: 10),
           FloatingActionButton(
+            heroTag: 'decrementbtn',
             onPressed: () {
               context.read<CounterCubit>().decrement();
             },
@@ -44,11 +46,23 @@ class CounterView2 extends StatelessWidget {
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
+                  /*
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => BlocProvider.value(
                         value: context.read<CounterCubit>(),
+                        child: CounterView1(),
+                      ),
+                    ),
+                  );
+                  */
+                  final counterCubit = context.read<CounterCubit>();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider.value(
+                        value: counterCubit,
                         child: CounterView1(),
                       ),
                     ),
